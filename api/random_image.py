@@ -1,4 +1,4 @@
-from flask import Flask, send_file, jsonify
+from flask import Flask, send_file, jsonify, make_response
 import os
 import random
 
@@ -19,7 +19,15 @@ def random_image():
     image_name = random.choice(image_list)
     image_path = os.path.join(IMAGE_FOLDER, image_name)
 
-    return send_file(image_path, mimetype='image/jpg')
+    # 使用send_file发送图片
+    response = make_response(send_file(image_path, mimetype='image/jpg'))
+
+    # 设置HTTP头来防止浏览器缓存
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)

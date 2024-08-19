@@ -9,10 +9,7 @@
     "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "api/random_image.py",
-        "headers": {
-          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
-        }
+        "dest": "api/random_image.py"
       }
     ]
   }
