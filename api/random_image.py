@@ -20,7 +20,7 @@ def random_image():
     image_path = os.path.join(IMAGE_FOLDER, image_name)
 
     # 使用send_file发送图片
-    response = make_response(send_file(image_path, mimetype='image/jpg'))
+    response = make_response(send_file(image_path))
 
     # 设置HTTP头来防止浏览器缓存
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
